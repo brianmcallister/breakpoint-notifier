@@ -1,16 +1,41 @@
+                       .--,                                   
+                      :   /\                                  
+                     /   ,  \                                 
+    ,---,.  ,---,   /   /    \                   ,---,.  ,---,
+  ,'  .' |,'  .'|  ;   /  ,   \                ,'  .' |,'  .'|
+,---.'  ,---.'  | /   /  / \   \       .---. ,---.'  ,---.'  |
+|   |   |   |   ;/   ;  /\  \   \    /.  ./| |   |   |   |   ;
+:   :  .:   :  .'\"""\ /  \  \ ;   .-' . ' | :   :  .:   :  .'
+:   |.' :   |.'   `---`    `--`   /___/ \: | :   |.' :   |.'  
+`---'   `---'                     .   \  ' . `---'   `---'    
+                                   \   \   '                  
+                                    \   \                     
+                                     \   \ |                  
+                                      '---"                   
+
 Breakpoint Notifier.
 
-A simple, lightweight JavaScript breakpoint notifier. (Requires jQuery)
+A simple, lightweight JavaScript breakpoint notifier. Currently requires jQuery,
+but that dependency will be made optional in the future. The only real jQuery
+functionality happening is event triggering on breakpoint change.
 
-First, initialize a notifier:
+Usage:
 
-  notifier = new Notifier({
+
+1. Initialize a notifier object:
+
+  var notifier = new Notifier({
     phone: {max: 480},
     tablet: {min: 481, max: 800},
     desktop: {min: 801}
   });
 
-then, add callbacks:
+The names can be whatever you like, and so can the values as long as they don't
+overlap. These values are translated directly to media queries, and use the
+matchMedia DOM API.
+  
+
+2. Add callbacks:
 
   notifier.set({
     phone: function () {
@@ -23,5 +48,33 @@ then, add callbacks:
       $('.item').css('background', 'blue');
     }
   });
+  
+You can add multiple callbacks on a page too, without having to worry about
+your callbacks being called more than once in the same breakpoint. 
+See `index.html` file for an example of this in action.
 
-See the `index.html` file for an example.
+
+3. Use the public API.
+
+getLastBreakpoint: Returns the previous breakpoint, or undefined.
+
+notifier.getLastBreakpoint();
+#=> `desktop`
+
+
+getCurrentBreakpoint: Returns the current breakpoint.
+
+notifier.getCurrentBreakpoint();
+#=> `desktop`
+
+
+set: Set callbacks. Returns the notifier object.
+
+notifier.set(breakpoints);
+#=> Notifier
+
+
+fire: Fire callbacks for current, or passed, breakpoint. Returns the notifier.
+
+notifier.fire([breakpoint]);
+#=> Notifier
