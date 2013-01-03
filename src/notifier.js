@@ -1,11 +1,11 @@
 /*jslint browser: true, indent: 2, maxlen: 80, nomen: true, plusplus: true */
-/*global require, define */
+/*global require, define, $ */
 
-(function ($) {
+(function () {
   'use strict';
 
-  var $window = $(window),
-    $body = $('body'),
+  var $window,
+    $body,
     NotifierClass,
     methods,
     callbacks,
@@ -25,6 +25,9 @@
    *   });
    */
   NotifierClass = function (breakpoints) {
+    $window = $(window);
+    $body = $('body');
+
     // Don't bother continuing if this browser doesn't
     // support the matchMedia API.
     if (!state.matchMedia) {
@@ -268,11 +271,20 @@
     }
   };
 
-  if (window.define) {
-    define([], function () {
-      return NotifierClass;
-    });
-  } else {
-    window.Notifier = NotifierClass;
+  /**
+   * Return the NotifierClass object.
+   */
+  function identity() {
+    return NotifierClass;
   }
-}(window.jQuery));
+
+  /**
+   * Add support for requrejs.
+   * Attach to the `window` if no script loader is being used.
+   */
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], identity);
+  } else {
+    window.Notifier = identity();
+  }
+}());
