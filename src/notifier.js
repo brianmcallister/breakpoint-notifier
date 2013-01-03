@@ -143,7 +143,7 @@
     },
 
     /**
-     * Public: Set up a callback list for breakpoints.
+     * Private: Set up a callback list for breakpoints.
      *
      * breakpoint - Breakpoint to set a callback function for.
      * fn         - Callback function to run when a breakpoint is hit.
@@ -167,7 +167,7 @@
     },
 
     /**
-     * Fire a single callback.
+     * Private: Fire a single callback.
      *
      * callback - Callback to fire.
      *
