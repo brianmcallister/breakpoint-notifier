@@ -4,17 +4,14 @@ A simple, lightweight JavaScript breakpoint notifier. (Requires jQuery)
 
 First, initialize a notifier:
 
-```
   notifier = new Notifier({
     phone: {max: 480},
     tablet: {min: 481, max: 800},
     desktop: {min: 801}
   });
-```
 
 then, add callbacks:
 
-```
   notifier.set({
     phone: function () {
       $('.item').css('background', 'red');
@@ -26,6 +23,5 @@ then, add callbacks:
       $('.item').css('background', 'blue');
     }
   });
-```
 
 See the `index.html` file for an example.
