@@ -14,23 +14,32 @@
   });
 
   notifier.set({
-    phone: function () {
-      $test.css('background', 'red');
+    phone: function (current) {
+      $test.css('background', 'red')
+        .text(current.charAt(0).toUpperCase() + current.slice(1));
     },
-    tablet: function () {
-      $test.css('background', 'green');
+    tablet: function (current) {
+      $test.css('background', 'green')
+        .text(current.charAt(0).toUpperCase() + current.slice(1));
     },
-    desktop: function () {
-      $test.css('background', 'blue');
+    desktop: function (current) {
+      $test.css('background', 'blue')
+        .text(current.charAt(0).toUpperCase() + current.slice(1));
     }
   });
   
   notifier.set({
     phone: function () {
-      $test.css('width', '10%');
+      $test.css({
+        'width': '20%',
+        'font-size': '14px'
+      });
     },
     tablet: function () {
-      $test.css('width', '40%');
+      $test.css({
+        'width': '40%',
+        'font-size': '28px'
+      });
     },
     desktop: function () {
       $test.css('width', '80%');
