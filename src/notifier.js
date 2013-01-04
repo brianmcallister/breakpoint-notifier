@@ -187,7 +187,7 @@
         return false;
       }
 
-      callback.call(callback, state.currentBreakpoint, state.lastBreakpoint);
+      callback.call(NotifierClass.prototype, state.currentBreakpoint, state.lastBreakpoint);
       callback.fired = true;
 
       return this;
