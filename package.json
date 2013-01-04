@@ -1,0 +1,9 @@
+{
+  "name": "breakpoint-notifier",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-uglify": "~0.1.0",
+    "grunt-contrib-qunit": "~0.1.0"
+  }
+}
