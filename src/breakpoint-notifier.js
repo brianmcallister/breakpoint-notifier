@@ -39,11 +39,19 @@
 
     // Build breakpoint strings to feed to matchMedia.
     methods.buildBreakpointStrings();
+    
+    $.each(state.breakpointStrings, function (key, value) {
+      var mql;
+      mql = window.matchMedia(value)
+      mql.addListener(function (list) {
+        console.log('mql', list);
+      });
+    });
 
-    // Resize listener.
-    $window.on('resize', function () {
-      methods.checkBreakpoint();
-    }).trigger('resize');
+    // // Resize listener.
+    // $window.on('resize', function () {
+    //   methods.checkBreakpoint();
+    // }).trigger('resize');
   };
 
   // Private: Internal list of available callbacks.
